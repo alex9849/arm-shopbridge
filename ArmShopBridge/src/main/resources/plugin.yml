@@ -1,0 +1,13 @@
+name: ArmShopBridge
+version: ${project.version}
+main: net.alex9849.armshopbridge.ArmShopBridge
+depend: [AdvancedRegionMarket]
+softdepend:
+  - QuickShop
+  - ShopChest
+  - UltimateShops
+authors:
+  - alex9849
+api-version: 1.13
+prefix: ArmShopBridge
+commands: {}
