@@ -18,7 +18,6 @@ before_deploy:
   - rm -f ./push/original-*.jar
   - rm -f ./push/*-shaded.jar
   - rm -f ./push/*-sources.jar
-  - mv -f ./push/*-javadoc.jar
 
 deploy:
   - provider: releases
