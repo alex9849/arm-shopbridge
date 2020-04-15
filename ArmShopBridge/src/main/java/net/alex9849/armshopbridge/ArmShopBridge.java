@@ -65,6 +65,7 @@ public class ArmShopBridge extends JavaPlugin {
         try {
             Class qsAdapterClass = Class.forName(classPath);
             adapterSet.add((IShopPluginAdapter) qsAdapterClass.newInstance());
+            getLogger().log(Level.INFO, "Successfully hooked into " + pluginName);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             getLogger().log(Level.WARNING, "Could not activate " + pluginName + " integration! Ignoring it!");
         }

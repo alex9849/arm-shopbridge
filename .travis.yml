@@ -1,0 +1,32 @@
+sudo: false
+language: java
+services:
+  - docker
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+jdk:
+  - openjdk8
+
+before_deploy:
+  - "mvn versions:set -DnewVersion=$TRAVIS_TAG"
+  - "mvn versions:commit"
+  - mvn clean
+  - mvn install
+  - mkdir push
+  - cp ./ArmShopBridge/target/*.jar ./push
+  - rm -f ./push/original-*.jar
+  - rm -f ./push/*-shaded.jar
+  - rm -f ./push/*-sources.jar
+  - mv -f ./push/*-javadoc.jar ./push/JavaDocument.zip
+
+deploy:
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file:
+      - ./push/*
+    file_glob: true
+    skip_cleanup: true
+    on:
+      tags: true
+    overwrite: true
