@@ -3,6 +3,7 @@ Settings:
   deleteShopsOnRegionUnsell: false
   ignorePlugins:
     - AShopPlugin
+#    - Shopkeepers
 #    - QuickShop
 #    - ShopChest
 #    - UltimateShops

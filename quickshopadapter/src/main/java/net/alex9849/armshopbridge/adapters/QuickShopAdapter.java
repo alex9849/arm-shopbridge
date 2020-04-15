@@ -20,7 +20,7 @@ public class QuickShopAdapter implements IShopPluginAdapter {
         Vector minPoint = region.getRegion().getMinPoint();
         Vector maxPoint = region.getRegion().getMinPoint();
         World world = region.getRegionworld();
-        Set<Chunk> chuckLocations = new HashSet<>();
+        Set<Chunk> chuckLocations = new HashSet<Chunk>();
 
         for(int x = minPoint.getBlockX(); x <= maxPoint.getBlockX() + 16; x += 16) {
             for(int z = minPoint.getBlockZ(); z <= maxPoint.getBlockZ() + 16; z += 16) {

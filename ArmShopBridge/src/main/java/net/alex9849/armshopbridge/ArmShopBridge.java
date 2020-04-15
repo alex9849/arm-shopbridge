@@ -41,17 +41,20 @@ public class ArmShopBridge extends JavaPlugin {
     private Set<IShopPluginAdapter> getInstalledAdapters() {
         Set<IShopPluginAdapter> adapters = new HashSet<>();
         Set<String> ignorePlugins = new HashSet<>(this.getConfig().getStringList("Settings.ignorePlugins"));
-
-        if(!ignorePlugins.contains("QuickShop") && Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
+        if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("QuickShop"))
+                && Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
             addAdapter(adapters, "QuickShop", "net.alex9849.armshopbridge.adapters.QuickShopAdapter");
         }
-        if(!ignorePlugins.contains("ShopChest") && Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
+        if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("ShopChest"))
+                && Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
             addAdapter(adapters, "ShopChest", "net.alex9849.armshopbridge.adapters.ShopChestAdapter");
         }
-        if(!ignorePlugins.contains("UltimateShops") && Bukkit.getPluginManager().getPlugin("UltimateShops") != null) {
+        if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("UltimateShops"))
+                && Bukkit.getPluginManager().getPlugin("UltimateShops") != null) {
             addAdapter(adapters, "UltimateShops", "net.alex9849.armshopbridge.adapters.UltimateShopsAdapter");
         }
-        if(!ignorePlugins.contains("Shopkeepers") && Bukkit.getPluginManager().getPlugin("Shopkeepers") != null) {
+        if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("Shopkeepers"))
+                && Bukkit.getPluginManager().getPlugin("Shopkeepers") != null) {
             addAdapter(adapters, "Shopkeepers", "net.alex9849.armshopbridge.adapters.ShopkeepersAdapter");
         }
 
