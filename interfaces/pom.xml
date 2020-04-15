@@ -11,12 +11,4 @@
 
     <artifactId>interfaces</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.github.alex9849</groupId>
-            <artifactId>advanced-region-market</artifactId>
-            <version>3.0</version>
-        </dependency>
-    </dependencies>
-
 </project>
