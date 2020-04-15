@@ -42,14 +42,15 @@ public class ArmShopBridge extends JavaPlugin {
 
     private Set<IShopPluginAdapter> getInstalledAdapters() {
         Set<IShopPluginAdapter> adapters = new HashSet<>();
+        Set<String> ignorePlugins = new HashSet<>(this.getConfig().getStringList("Settings.ignorePlugins"));
 
-        if(Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
+        if(!ignorePlugins.contains("QuickShop") && Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
             adapters.add(new QuickShopAdapter());
         }
-        if(Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
+        if(!ignorePlugins.contains("ShopChest") && Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
             adapters.add(new ShopChestAdapter());
         }
-        if(Bukkit.getPluginManager().getPlugin("UltimateShops") != null) {
+        if(!ignorePlugins.contains("UltimateShops") && Bukkit.getPluginManager().getPlugin("UltimateShops") != null) {
             adapters.add(new UltimateShopsAdapter());
         }
 
