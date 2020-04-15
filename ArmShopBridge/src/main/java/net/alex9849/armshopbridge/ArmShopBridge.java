@@ -2,9 +2,6 @@ package net.alex9849.armshopbridge;
 
 import net.alex9849.arm.events.ResetBlocksEvent;
 import net.alex9849.arm.events.UnsellRegionEvent;
-import net.alex9849.armshopbridge.adapters.QuickShopAdapter;
-import net.alex9849.armshopbridge.adapters.ShopChestAdapter;
-import net.alex9849.armshopbridge.adapters.UltimateShopsAdapter;
 import net.alex9849.armshopbridge.interfaces.IShopPluginAdapter;
 import net.alex9849.armshopbridge.listener.RestoreRegionListener;
 import net.alex9849.armshopbridge.listener.UnsellRegionListener;
@@ -13,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
 
 public class ArmShopBridge extends JavaPlugin {
     private static ArmShopBridge instance;
@@ -45,16 +43,29 @@ public class ArmShopBridge extends JavaPlugin {
         Set<String> ignorePlugins = new HashSet<>(this.getConfig().getStringList("Settings.ignorePlugins"));
 
         if(!ignorePlugins.contains("QuickShop") && Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
-            adapters.add(new QuickShopAdapter());
+            addAdapter(adapters, "QuickShop", "net.alex9849.armshopbridge.adapters.QuickShopAdapter");
         }
         if(!ignorePlugins.contains("ShopChest") && Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
-            adapters.add(new ShopChestAdapter());
+            addAdapter(adapters, "ShopChest", "net.alex9849.armshopbridge.adapters.ShopChestAdapter");
         }
         if(!ignorePlugins.contains("UltimateShops") && Bukkit.getPluginManager().getPlugin("UltimateShops") != null) {
-            adapters.add(new UltimateShopsAdapter());
+            addAdapter(adapters, "UltimateShops", "net.alex9849.armshopbridge.adapters.UltimateShopsAdapter");
+        }
+        if(!ignorePlugins.contains("Shopkeepers") && Bukkit.getPluginManager().getPlugin("Shopkeepers") != null) {
+            addAdapter(adapters, "Shopkeepers", "net.alex9849.armshopbridge.adapters.ShopkeepersAdapter");
         }
 
         return adapters;
+    }
+
+    private Set<IShopPluginAdapter> addAdapter(Set<IShopPluginAdapter> adapterSet, String pluginName, String classPath) {
+        try {
+            Class qsAdapterClass = Class.forName(classPath);
+            adapterSet.add((IShopPluginAdapter) qsAdapterClass.newInstance());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            getLogger().log(Level.WARNING, "Could not activate " + pluginName + " integration! Ignoring it!");
+        }
+        return adapterSet;
     }
 
     public static ArmShopBridge getInstance() {
