@@ -6,11 +6,10 @@
 
     <groupId>net.alex9849.armshopbridge</groupId>
     <artifactId>parent</artifactId>
-    <name>ArmShopBridge</name>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>armshopbridge</module>
+        <module>ArmShopBridge</module>
         <module>interfaces</module>
         <module>quickshopadapter</module>
         <module>shopchestadapter</module>
