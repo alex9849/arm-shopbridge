@@ -1,6 +1,6 @@
 package net.alex9849.armshopbridge;
 
-import net.alex9849.arm.events.ResetBlocksEvent;
+import net.alex9849.arm.events.RestoreRegionEvent;
 import net.alex9849.arm.events.UnsellRegionEvent;
 import net.alex9849.armshopbridge.interfaces.IShopPluginAdapter;
 import net.alex9849.armshopbridge.listener.RestoreRegionListener;
@@ -33,7 +33,7 @@ public class ArmShopBridge extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
-        ResetBlocksEvent.getHandlerList().unregister(this);
+        RestoreRegionEvent.getHandlerList().unregister(this);
         UnsellRegionEvent.getHandlerList().unregister(this);
         ArmShopBridge.instance = null;
     }
