@@ -6,11 +6,17 @@ import net.alex9849.armshopbridge.interfaces.IShopPluginAdapter;
 import net.alex9849.armshopbridge.listener.RestoreRegionListener;
 import net.alex9849.armshopbridge.listener.UnsellRegionListener;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class ArmShopBridge extends JavaPlugin {
     private static ArmShopBridge instance;
@@ -43,7 +49,7 @@ public class ArmShopBridge extends JavaPlugin {
         Set<String> ignorePlugins = new HashSet<>(this.getConfig().getStringList("Settings.ignorePlugins"));
         if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("QuickShop"))
                 && Bukkit.getPluginManager().getPlugin("QuickShop") != null) {
-            addAdapter(adapters, "QuickShop", "net.alex9849.armshopbridge.adapters.QuickShopAdapter");
+            addQuickshopAdapter(adapters);
         }
         if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("ShopChest"))
                 && Bukkit.getPluginManager().getPlugin("ShopChest") != null) {
@@ -59,6 +65,30 @@ public class ArmShopBridge extends JavaPlugin {
         }
 
         return adapters;
+    }
+
+    private void addQuickshopAdapter(Set<IShopPluginAdapter> adapters) {
+        Plugin qsPlugin = Bukkit.getPluginManager().getPlugin("QuickShop");
+        if(qsPlugin == null) {
+            return;
+        }
+        String qsVersion = qsPlugin.getDescription().getVersion();
+        Pattern pattern = Pattern.compile("\\d(\\d)*(\\.\\d(\\d)*)*");
+        Matcher matcher = pattern.matcher(qsVersion);
+        if(!matcher.find()) {
+            return;
+        }
+        String qsVersionNumbersString = qsVersion.substring(matcher.start(0), matcher.end(0));
+        String[] qsVersionNumberStringSplitted = qsVersionNumbersString.split("\\.");
+        List<Integer> versionNumbers = Arrays.stream(qsVersionNumberStringSplitted).map(Integer::parseInt).collect(Collectors.toList());
+        if(versionNumbers.size() == 0) {
+            return;
+        }
+        if(versionNumbers.get(0) >= 4) {
+            addAdapter(adapters, "QuickShop", "net.alex9849.armshopbridge.adapters.QuickShop4Adapter");
+        } else {
+            addAdapter(adapters, "QuickShop", "net.alex9849.armshopbridge.adapters.QuickShopAdapter");
+        }
     }
 
     private Set<IShopPluginAdapter> addAdapter(Set<IShopPluginAdapter> adapterSet, String pluginName, String classPath) {
