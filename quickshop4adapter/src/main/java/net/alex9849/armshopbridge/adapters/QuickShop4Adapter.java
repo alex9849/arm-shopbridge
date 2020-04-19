@@ -6,7 +6,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
-import org.maxgamer.quickshop.QuickShop;
+import org.maxgamer.quickshop.api.QuickShopAPI;
 import org.maxgamer.quickshop.shop.Shop;
 
 import java.util.HashMap;
@@ -28,10 +28,11 @@ public class QuickShop4Adapter implements IShopPluginAdapter {
             }
         }
 
+
         HashMap<Location, Shop> shopMap = new HashMap<>();
 
         for(Chunk chunk : chuckLocations) {
-            Map<Location, Shop> shopsInChunk = QuickShop.getPlugin(QuickShop.class).getShopManager().getShops(chunk);
+            Map<Location, Shop> shopsInChunk = QuickShopAPI.getShopAPI().getShop(chunk);
             if(shopsInChunk != null) {
                 shopMap.putAll(shopsInChunk);
             }
