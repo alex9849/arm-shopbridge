@@ -28,7 +28,7 @@
         <dependency>
             <groupId>de.epiceric</groupId>
             <artifactId>ShopChest</artifactId>
-            <version>1.11.1</version>
+            <version>1.13-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
