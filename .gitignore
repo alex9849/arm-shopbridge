@@ -17,3 +17,11 @@ local.properties
 .idea
 dependency-reduced-pom.xml
 desktop.ini
+
+ArmShopBridge/target
+interfaces/target
+quickshop4adapter/target
+quickshopadapter/target
+shopchestadapter/target
+shopkeepersadapter/target
+ultimateshopsadapter/target

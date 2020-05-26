@@ -7,11 +7,13 @@ import net.alex9849.arm.regions.Region;
 import net.alex9849.armshopbridge.interfaces.IShopPluginAdapter;
 import org.bukkit.Location;
 
+import java.util.Collection;
+
 public class ShopChestAdapter implements IShopPluginAdapter {
     @Override
     public void deleteShops(Region region) {
         ShopUtils shopUtils = ShopChest.getInstance().getShopUtils();
-        Shop[] shops = shopUtils.getShops().clone();
+        Collection<Shop> shops = shopUtils.getShops();
 
         for(Shop shop : shops) {
             Location loc = shop.getLocation();
