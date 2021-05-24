@@ -63,6 +63,10 @@ public class ArmShopBridge extends JavaPlugin {
                 && Bukkit.getPluginManager().getPlugin("Shopkeepers") != null) {
             addAdapter(adapters, "Shopkeepers", "net.alex9849.armshopbridge.adapters.ShopkeepersAdapter");
         }
+        if(ignorePlugins.stream().noneMatch(x -> x.equalsIgnoreCase("DisplayShops"))
+                && Bukkit.getPluginManager().getPlugin("DisplayShops") != null) {
+            addAdapter(adapters, "DisplayShops", "ru.nosooqua.armshopbridge.adapters.DisplayShopsAdapter");
+        }
 
         return adapters;
     }

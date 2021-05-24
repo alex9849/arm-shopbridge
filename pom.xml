@@ -16,6 +16,7 @@
         <module>ultimateshopsadapter</module>
         <module>shopkeepersadapter</module>
         <module>quickshop4adapter</module>
+        <module>displayshopsadapter</module>
     </modules>
 
     <properties>
