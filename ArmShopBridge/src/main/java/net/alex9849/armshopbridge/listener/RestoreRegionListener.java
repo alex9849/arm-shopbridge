@@ -7,8 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-import java.util.Arrays;
-
 public class RestoreRegionListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)

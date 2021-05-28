@@ -7,7 +7,6 @@ softdepend:
   - ShopChest
   - UltimateShops
   - Shopkeepers
-  - DisplayShops
 authors:
   - alex9849
 api-version: 1.13
