@@ -3,13 +3,8 @@ package ru.nosooqua.armshopbridge.adapters;
 import net.alex9849.arm.regions.Region;
 import net.alex9849.armshopbridge.interfaces.IShopPluginAdapter;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import xzot1k.plugins.ds.DisplayShops;
 import xzot1k.plugins.ds.api.objects.Shop;
-
-import java.util.logging.Level;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class DisplayShopsAdapter implements IShopPluginAdapter {
     @Override
