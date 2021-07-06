@@ -24,7 +24,6 @@ public class UltimateShopsAdapter implements IShopPluginAdapter {
             mutex.release();
         } catch(InterruptedException ie) {
             mutex.release();
-            Bukkit.getLogger().log(Level.WARNING, ie);
         }
     }
 }
