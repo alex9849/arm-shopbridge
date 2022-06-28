@@ -17,6 +17,11 @@
             <id>Ghost_chu</id>
             <url>https://raw.githubusercontent.com/Ghost-chu/maven-repo/master</url>
         </repository>
+
+        <repository>
+            <id>quickshop-repo</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -30,7 +35,7 @@
             <groupId>org.maxgamer</groupId>
             <artifactId>QuickShop</artifactId>
             <scope>provided</scope>
-            <version>4.0</version>
+            <version>5.1.0.9</version>
         </dependency>
 
     </dependencies>
