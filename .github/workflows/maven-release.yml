@@ -32,6 +32,9 @@ jobs:
           mvn --no-transfer-progress --batch-mode versions:set -DnewVersion=${{ github.event.inputs.releaseVersion }}
           mvn --no-transfer-progress --batch-mode versions:commit
 
+      - name: Install
+        run: mvn clean install
+
       - name: Get artifacts
         run: |
           mkdir push
