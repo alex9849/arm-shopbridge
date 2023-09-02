@@ -33,7 +33,7 @@ jobs:
           mvn --no-transfer-progress --batch-mode versions:commit
 
       - name: Install
-        run: mvn clean install
+        run: mvn --no-transfer-progress --batch-mode clean install
 
       - name: Get artifacts
         run: |
